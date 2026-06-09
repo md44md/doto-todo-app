@@ -13,6 +13,20 @@ import {
 import { db } from '../lib/firebase'
 import { validateTodo } from '../validators/todoValidator'
 
+// sort by due date first, then by priority
+const PRIORITY_ORDER = { high: 1, normal: 2, low: 3 }
+
+function sortTodos(todos) {
+  return [...todos].sort((a, b) => {
+    const dateA = a.dueDate ? new Date(a.dueDate) : Infinity
+    const dateB = b.dueDate ? new Date(b.dueDate) : Infinity
+
+    if (dateA !== dateB) return dateA - dateB
+
+    return PRIORITY_ORDER[a.priority] - PRIORITY_ORDER[b.priority]
+  })
+}
+
 export function useTodos(uid) {
     const [todos, setTodos] = useState([])
     const [loading, setLoading] = useState(true)
@@ -23,7 +37,6 @@ export function useTodos(uid) {
 
         const q = query(
         collection(db, 'users', uid, 'todos'),
-        orderBy('createdAt', 'desc')
     )
 
         const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -31,11 +44,13 @@ export function useTodos(uid) {
                 id: doc.id,
                 ...doc.data(),
             }))
-            setTodos(data)
+
+            const sorted = sortTodos(data)  // sort before setting state
+            setTodos(sorted)
             setLoading(false)
         })
 
-        return unsubscribe  // stop listening when component unmounts
+        return unsubscribe  
     }, [uid])
 
     async function addTodo({ title, note = '', priority = 'normal', dueDate = null }) {
