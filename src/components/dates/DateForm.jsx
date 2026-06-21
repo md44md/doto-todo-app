@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function DateForm({ onAdd, errors }) {
+export default function DateForm({ onAdd, errors, onSuccess, onCancel }) {
     const [title, setTitle] = useState('')
     const [note, setNote] = useState('')
     const [date, setDate] = useState('')
@@ -16,6 +16,7 @@ export default function DateForm({ onAdd, errors }) {
             setDate('')
             setTime('')
             setRepeat('none')
+            onSuccess?.() 
         }
     }
     return (
@@ -54,6 +55,7 @@ export default function DateForm({ onAdd, errors }) {
         </select>
 
         <button onClick={handleSubmit}>Add Date</button>
+        <button onClick={onCancel}>Cancel</button>
         </div>
     )
 }

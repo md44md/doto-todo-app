@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function TodoForm({ onAdd, errors }) {
+export default function TodoForm({ onAdd, errors, onSuccess, onCancel }) {
     const [title, setTitle] = useState('')
     const [note, setNote] = useState('')
     const [priority, setPriority] = useState('normal')
@@ -14,6 +14,7 @@ export default function TodoForm({ onAdd, errors }) {
             setNote('')
             setPriority('normal')
             setDueDate('')
+            onSuccess?.() 
         }
     }
     return (
@@ -47,6 +48,7 @@ export default function TodoForm({ onAdd, errors }) {
         {errors.dueDate && <p>{errors.dueDate}</p>}
 
         <button onClick={handleSubmit}>Add Task</button>
+        <button onClick={onCancel}>Cancel</button>
         </div>
     )
 }

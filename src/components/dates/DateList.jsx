@@ -1,4 +1,3 @@
-import DateForm from './DateForm'
 import DateItem from './DateItem'
 
 export default function DateList({ dates, loading, errors, onAdd, onToggle, onDelete }) {
@@ -10,8 +9,6 @@ export default function DateList({ dates, loading, errors, onAdd, onToggle, onDe
   return (
     <div>
       <h2>My Dates</h2>
-
-      <DateForm onAdd={onAdd} errors={errors} />
 
       {activeDates.length === 0 && <p>No dates yet — add one above!</p>}
 

@@ -1,7 +1,6 @@
-import TodoForm from './TodoForm'
 import TodoItem from './TodoItem'
 
-export default function TodoList({ todos, loading, errors, onAdd, onToggle, onDelete }) {
+export default function TodoList({ todos, loading, onToggle, onDelete }) {
   const activeTodos = todos.filter(todo => !todo.completed)
   const completedTodos = todos.filter(todo => todo.completed)
 
@@ -10,8 +9,6 @@ export default function TodoList({ todos, loading, errors, onAdd, onToggle, onDe
   return (
     <div>
       <h2>My Tasks</h2>
-
-      <TodoForm onAdd={onAdd} errors={errors} />
 
       {activeTodos.length === 0 && <p>No tasks yet — add one above!</p>}
 
