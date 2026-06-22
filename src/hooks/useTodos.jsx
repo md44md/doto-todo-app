@@ -18,14 +18,14 @@ const PRIORITY_ORDER = { high: 1, normal: 2, low: 3 }
 
 function sortTodos(todos) {
   return [...todos].sort((a, b) => {
-    const dateA = a.dueDate ? new Date(a.dueDate) : Infinity
-    const dateB = b.dueDate ? new Date(b.dueDate) : Infinity
+        const dateA = a.dueDate ? new Date(a.dueDate) : Infinity
+        const dateB = b.dueDate ? new Date(b.dueDate) : Infinity
 
-    if (dateA !== dateB) return dateA - dateB
+        if (dateA !== dateB) return dateA - dateB
 
-    return PRIORITY_ORDER[a.priority] - PRIORITY_ORDER[b.priority]
-  })
-}
+        return PRIORITY_ORDER[a.priority] - PRIORITY_ORDER[b.priority]
+    })
+}       
 
 export function useTodos(uid) {
     const [todos, setTodos] = useState([])
@@ -36,8 +36,8 @@ export function useTodos(uid) {
         if (!uid) return
 
         const q = query(
-        collection(db, 'users', uid, 'todos'),
-    )
+            collection(db, 'users', uid, 'todos'),
+        )
 
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const data = snapshot.docs.map((doc) => ({
