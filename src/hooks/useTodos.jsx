@@ -11,7 +11,7 @@ import {
   serverTimestamp,
 } from 'firebase/firestore'
 import { db } from '../lib/firebase'
-import { validateTodo } from '../validators/todoValidator'
+import { validateTitle } from '../validator'
 
 // sort by due date first, then by priority
 const PRIORITY_ORDER = { high: 1, normal: 2, low: 3 }
@@ -67,7 +67,7 @@ export function useTodos(uid) {
     }, [uid])
 
     async function addTodo({ title, note = '', priority = 'normal', dueDate = null, dueTime = null }) {
-        const validationErrors = validateTodo({ title, priority, dueDate, dueTime })
+        const validationErrors = validateTitle({ title })
 
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors)

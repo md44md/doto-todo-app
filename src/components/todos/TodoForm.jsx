@@ -39,21 +39,18 @@ export default function TodoForm({ onAdd, errors, onSuccess, onCancel }) {
             <option value="normal">Normal</option>
             <option value="low">Low</option>
         </select>
-        {errors.priority && <p>{errors.priority}</p>}
 
         <input
             type="date"
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
         />
-        {errors.dueDate && <p>{errors.dueDate}</p>}
 
         <input
             type="time"
             value={dueTime}
             onChange={(e) => setDueTime(e.target.value)}
         />
-        {errors.dueTime && <p>{errors.dueTime}</p>}
 
 
         <button onClick={handleSubmit}>Add Task</button>

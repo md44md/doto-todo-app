@@ -40,14 +40,12 @@ export default function DateForm({ onAdd, errors, onSuccess, onCancel }) {
             value={date}
             onChange={(e) => setDate(e.target.value)}
         />
-        {errors.date && <p>{errors.date}</p>}
 
         <input
             type="time"
             value={time}
             onChange={(e) => setTime(e.target.value)}
         />
-        {errors.time && <p>{errors.time}</p>}
 
         <select value={repeat} onChange={(e) => setRepeat(e.target.value)}>
             <option value="none">Does not repeat</option>
