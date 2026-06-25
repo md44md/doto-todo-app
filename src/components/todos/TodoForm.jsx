@@ -5,15 +5,16 @@ export default function TodoForm({ onAdd, errors, onSuccess, onCancel }) {
     const [note, setNote] = useState('')
     const [priority, setPriority] = useState('normal')
     const [dueDate, setDueDate] = useState('')
-
+    const [dueTime, setDueTime] = useState('')
     async function handleSubmit() { 
-        const success = await onAdd({ title, note, priority, dueDate: dueDate || null })
+        const success = await onAdd({ title, note, priority, dueDate: dueDate || null, dueTime: dueTime || null })
         
         if (success) {
             setTitle('')
             setNote('')
             setPriority('normal')
             setDueDate('')
+            setDueTime('')
             onSuccess?.() 
         }
     }
@@ -46,6 +47,14 @@ export default function TodoForm({ onAdd, errors, onSuccess, onCancel }) {
             onChange={(e) => setDueDate(e.target.value)}
         />
         {errors.dueDate && <p>{errors.dueDate}</p>}
+
+        <input
+            type="time"
+            value={dueTime}
+            onChange={(e) => setDueTime(e.target.value)}
+        />
+        {errors.dueTime && <p>{errors.dueTime}</p>}
+
 
         <button onClick={handleSubmit}>Add Task</button>
         <button onClick={onCancel}>Cancel</button>

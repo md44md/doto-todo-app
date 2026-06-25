@@ -1,4 +1,4 @@
-export function validateTodo({ title, dueDate, priority }){
+export function validateTodo({ title, dueDate, dueTime, priority }){
     const errors = {}
 
     if (!title || title.trim() === '') {
@@ -11,6 +11,13 @@ export function validateTodo({ title, dueDate, priority }){
         const date = new Date(dueDate)
         if (isNaN(date.getTime())) {
         errors.dueDate = 'Please enter a valid date'
+        }
+    }
+
+    if (dueTime) {
+        const [hours, minutes] = dueTime.split(':')
+        if (!hours || !minutes || isNaN(hours) || isNaN(minutes)) {
+            errors.dueTime = 'Please enter a valid time'
         }
     }
 

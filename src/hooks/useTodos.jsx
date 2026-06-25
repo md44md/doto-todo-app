@@ -18,14 +18,27 @@ const PRIORITY_ORDER = { high: 1, normal: 2, low: 3 }
 
 function sortTodos(todos) {
   return [...todos].sort((a, b) => {
-        const dateA = a.dueDate ? new Date(a.dueDate) : Infinity
-        const dateB = b.dueDate ? new Date(b.dueDate) : Infinity
+    const dateA = getDueDateTime(a.dueDate, a.dueTime)
+    const dateB = getDueDateTime(b.dueDate, b.dueTime)
 
-        if (dateA !== dateB) return dateA - dateB
+    if (dateA !== dateB) return dateA - dateB
 
-        return PRIORITY_ORDER[a.priority] - PRIORITY_ORDER[b.priority]
-    })
-}       
+    return PRIORITY_ORDER[a.priority] - PRIORITY_ORDER[b.priority]
+  })
+}
+
+function getDueDateTime(dueDate, dueTime) {
+  if (!dueDate) return Infinity   // no due date = sort to the bottom
+
+  const date = new Date(dueDate)
+
+  if (dueTime) {
+    const [hours, minutes] = dueTime.split(':')
+    date.setHours(parseInt(hours), parseInt(minutes), 0, 0)
+  }
+
+  return date
+}    
 
 export function useTodos(uid) {
     const [todos, setTodos] = useState([])
@@ -53,8 +66,8 @@ export function useTodos(uid) {
         return unsubscribe  
     }, [uid])
 
-    async function addTodo({ title, note = '', priority = 'normal', dueDate = null }) {
-        const validationErrors = validateTodo({ title, priority, dueDate })
+    async function addTodo({ title, note = '', priority = 'normal', dueDate = null, dueTime = null }) {
+        const validationErrors = validateTodo({ title, priority, dueDate, dueTime })
 
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors)
@@ -67,6 +80,7 @@ export function useTodos(uid) {
             note,
             priority,
             dueDate,
+            dueTime,
             completed: false,
             createdAt: serverTimestamp(),
         })
