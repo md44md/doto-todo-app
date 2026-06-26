@@ -11,7 +11,7 @@ import {
   serverTimestamp,
 } from 'firebase/firestore'
 import { db } from '../lib/firebase'
-import { validateDate } from '../validators/dateValidator'
+import { validateTitle } from '../validators/titleValidator'
 
 function sortDates(dates) {
     return [...dates].sort((a, b) => {
@@ -67,7 +67,7 @@ export function useDates(uid) {
     }, [uid])
 
     async function addDate({ title, note = '', date, time = '', repeat = 'none' }) {
-        const validationErrors = validateDate({ title, date, repeat })
+        const validationErrors = validateTitle({ title })
 
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors)
