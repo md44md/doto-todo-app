@@ -11,7 +11,7 @@ import {
   serverTimestamp,
 } from 'firebase/firestore'
 import { db } from '../lib/firebase'
-import { validateTitle } from '../validator'
+import { validateTitle } from '../validators/titleValidator'
 
 // sort by due date first, then by priority
 const PRIORITY_ORDER = { high: 1, normal: 2, low: 3 }

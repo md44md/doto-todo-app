@@ -11,7 +11,7 @@ import {
   serverTimestamp,
 } from 'firebase/firestore'
 import { db } from '../lib/firebase'
-import { validateTitle } from '../validator'
+import { validateTitle } from '../validators/titleValidator'
 
 function sortDates(dates) {
     return [...dates].sort((a, b) => {
