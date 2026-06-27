@@ -27,7 +27,6 @@ export default function DateForm({ onAdd, errors, onSuccess, onCancel }) {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />
-            {errors.title && <p>{errors.title}</p>}
 
             <textarea
                 placeholder="Note (optional)"
@@ -40,7 +39,6 @@ export default function DateForm({ onAdd, errors, onSuccess, onCancel }) {
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
             />
-            {errors.date && <p>{errors.date}</p>}
 
             <input
                 type="time"
@@ -53,6 +51,8 @@ export default function DateForm({ onAdd, errors, onSuccess, onCancel }) {
                 <option value="yearly">Repeats yearly</option>
             </select>
 
+            {errors.title && <p>{errors.title}</p>}
+            {errors.date && <p>{errors.date}</p>}
             <button onClick={handleSubmit}>Add Date</button>
             <button onClick={onCancel}>Cancel</button>
         </div>

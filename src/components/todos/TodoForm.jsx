@@ -26,7 +26,6 @@ export default function TodoForm({ onAdd, errors, onSuccess, onCancel }) {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />
-            {errors.title && <p>{errors.title}</p>}
 
             <textarea
                 placeholder="Note (optional)"
@@ -52,7 +51,7 @@ export default function TodoForm({ onAdd, errors, onSuccess, onCancel }) {
                 onChange={(e) => setDueTime(e.target.value)}
             />
 
-
+            {errors.title && <p>{errors.title}</p>}
             <button onClick={handleSubmit}>Add Task</button>
             <button onClick={onCancel}>Cancel</button>
         </div>
