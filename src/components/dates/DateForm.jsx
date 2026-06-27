@@ -8,7 +8,7 @@ export default function DateForm({ onAdd, errors, onSuccess, onCancel }) {
     const [repeat, setRepeat] = useState('none')
 
     async function handleSubmit() { 
-        const success = await onAdd({ title, note, date, time: time || null, repeat })
+        const success = await onAdd({ title, note, date, time, repeat })
         
         if (success) {
             setTitle('')

@@ -1,6 +1,6 @@
 import DateItem from './DateItem'
 
-export default function DateList({ dates, loading, errors, onAdd, onToggle, onDelete }) {
+export default function DateList({ dates, loading, errors, onAdd, onToggle, onUpdate, onDelete }) {
   const activeDates = dates.filter(date => !date.completed)
   const completedDates = dates.filter(date => date.completed)
 
@@ -16,7 +16,9 @@ export default function DateList({ dates, loading, errors, onAdd, onToggle, onDe
         <DateItem
           key={date.id}
           date={date}
+          onUpdate={onUpdate}
           onDelete={onDelete}
+          errors={errors}
         />
       ))}
 
