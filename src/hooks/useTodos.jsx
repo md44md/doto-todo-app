@@ -11,7 +11,7 @@ import {
   serverTimestamp,
 } from 'firebase/firestore'
 import { db } from '../lib/firebase'
-import { validateTitle } from '../validators/titleValidator'
+import { validateTitle } from '../validators/validator'
 import { requestNotificationPermission } from '../lib/notifications'
 
 // sort by due date first, then by priority
