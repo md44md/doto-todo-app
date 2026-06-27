@@ -13,8 +13,8 @@ import DateForm from '../components/dates/DateForm'
 
 export default function HomePage() {
   const { user } = useAuth()
-  const { dates, loading: datesLoading, errors: datesErrors, addDate, toggleDate, updateDate, deleteDate } = useDates(user.uid)
-  const { todos, loading: todosLoading, errors: todosErrors, addTodo, toggleTodo, updateTodo, deleteTodo } = useTodos(user.uid)
+  const { dates, loading: datesLoading, errors: datesErrors, addDate, toggleDate, updateDate, deleteDate, clearErrors: clearDateErrors } = useDates(user.uid)
+  const { todos, loading: todosLoading, errors: todosErrors, addTodo, toggleTodo, updateTodo, deleteTodo, clearErrors: clearTodoErrors } = useTodos(user.uid)
 
   const [modalOpen, setModalOpen] = useState(false)
   const [formType, setFormType] = useState(null)
@@ -22,11 +22,15 @@ export default function HomePage() {
   function openModal(type) {
     setFormType(type)
     setModalOpen(true)
+    clearTodoErrors()
+    clearDateErrors()
   }
 
   function closeModal() {
     setModalOpen(false)
     setFormType(null)
+    clearTodoErrors()
+    clearDateErrors()
   }
 
   const notificationGroups = useMemo(
@@ -50,8 +54,8 @@ export default function HomePage() {
 
       <main>
         <div className="todo-list-container">
-          <DateList dates={dates} errors={datesErrors} loading={datesLoading} onToggle={toggleDate} onUpdate={updateDate} onDelete={deleteDate} />
-          <TodoList todos={todos} errors={todosErrors} loading={todosLoading} onToggle={toggleTodo} onUpdate={updateTodo} onDelete={deleteTodo} />
+          <DateList dates={dates} errors={datesErrors} loading={datesLoading} onToggle={toggleDate} onUpdate={updateDate} onDelete={deleteDate} clearErrors={clearDateErrors} />
+          <TodoList todos={todos} errors={todosErrors} loading={todosLoading} onToggle={toggleTodo} onUpdate={updateTodo} onDelete={deleteTodo} clearErrors={clearTodoErrors} />
         </div>
 
         <button className={"add-button"} onClick={() => setModalOpen(true)}>+</button>
