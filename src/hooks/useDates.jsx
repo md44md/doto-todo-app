@@ -101,8 +101,22 @@ export function useDates(uid) {
         await deleteDoc(doc(db, 'users', uid, 'dates', dateId))
     }
 
+    // Update a date
     const updateDate = useCallback(async (dateId, fields) => {
+        const validationErrors = {
+            ...(fields.title !== undefined ? validateTitle({ title: fields.title }) : {}),
+            ...(fields.date !== undefined ? validateDate({ date: fields.date }) : {}),
+        }
+
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors)
+            return false
+        }
+
+        setErrors({})
+
         await updateDoc(doc(db, 'users', uid, 'dates', dateId), fields)
+        return true
     }, [uid])    
 
     return { dates, loading, errors, addDate, deleteDate, updateDate }

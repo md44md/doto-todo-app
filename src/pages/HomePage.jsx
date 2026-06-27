@@ -13,7 +13,7 @@ import DateForm from '../components/dates/DateForm'
 
 export default function HomePage() {
   const { user } = useAuth()
-  const { dates, loading: datesLoading, errors: datesErrors, addDate, updateDate,          deleteDate } = useDates(user.uid)
+  const { dates, loading: datesLoading, errors: datesErrors, addDate, updateDate, deleteDate } = useDates(user.uid)
   const { todos, loading: todosLoading, errors: todosErrors, addTodo, toggleTodo, updateTodo, deleteTodo } = useTodos(user.uid)
 
   const [modalOpen, setModalOpen] = useState(false)
@@ -72,8 +72,8 @@ export default function HomePage() {
         )}
 
         <div style={{ display: 'flex', gap: '24px' }}>
-          <TodoList todos={todos} loading={todosLoading} onToggle={toggleTodo} onUpdate={updateTodo} onDelete={deleteTodo} />
-          <DateList dates={dates} loading={datesLoading} onUpdate={updateDate} onDelete={deleteDate} />
+          <TodoList todos={todos} errors={todosErrors} loading={todosLoading} onToggle={toggleTodo} onUpdate={updateTodo} onDelete={deleteTodo} />
+          <DateList dates={dates} errors={datesErrors} loading={datesLoading} onUpdate={updateDate} onDelete={deleteDate} />
         </div>
       </main>
     </div>

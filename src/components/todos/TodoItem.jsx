@@ -1,17 +1,19 @@
 import { useState } from "react"
 
-export default function TodoItem({ todo, onToggle, onUpdate, onDelete }) {
+export default function TodoItem({ todo, onToggle, onUpdate, onDelete, errors }) {
   const [isEditing, setIsEditing] = useState(false)
   const [editTitle, setEditTitle] = useState(todo.title)  
-  const [editNote, setEditNote] = useState(todo.note)
+  const [editNote, setEditNote] = useState(todo.note || '')
   const [editPriority, setEditPriority] = useState(todo.priority)
-  const [editDueDate, setEditDueDate] = useState(todo.dueDate)
-  const [editDueTime, setEditDueTime] = useState(todo.dueTime)
+  const [editDueDate, setEditDueDate] = useState(todo.dueDate || '')
+  const [editDueTime, setEditDueTime] = useState(todo.dueTime || '')
 
-  function handleSave() {
-    onUpdate(todo.id, { title: editTitle, note: editNote, priority: editPriority, dueDate: editDueDate, dueTime: editDueTime})
+  async function handleSave() {
+    const success = await onUpdate(todo.id, { title: editTitle, note: editNote, priority: editPriority, dueDate: editDueDate, dueTime: editDueTime })
 
-    setIsEditing(false)
+    if (success){
+      setIsEditing(false)
+    }
   }
 
   function handleCancel() {
@@ -54,6 +56,7 @@ export default function TodoItem({ todo, onToggle, onUpdate, onDelete }) {
             value={editDueTime}
             onChange={(e) => setEditDueTime(e.target.value)}
         />
+        {errors.title && <p>{errors.title}</p>}
         <button onClick={handleSave}>Save</button>
         <button onClick={handleCancel}>Cancel</button>
       </div>

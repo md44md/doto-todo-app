@@ -107,7 +107,19 @@ export function useTodos(uid) {
     
     // Update a todo
     const updateTodo = useCallback(async (todoId, fields) => {
+        const validationErrors = {
+            ...(fields.title !== undefined ? validateTitle({ title: fields.title }) : {}),
+        }
+
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors)
+            return false
+        }
+
+        setErrors({})
+
         await updateDoc(doc(db, 'users', uid, 'todos', todoId), fields)
+        return true
     }, [uid])
 
     return { todos, loading, errors, addTodo, toggleTodo, deleteTodo, updateTodo }

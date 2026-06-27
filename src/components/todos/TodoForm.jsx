@@ -7,7 +7,7 @@ export default function TodoForm({ onAdd, errors, onSuccess, onCancel }) {
     const [dueDate, setDueDate] = useState('')
     const [dueTime, setDueTime] = useState('')
     async function handleSubmit() { 
-        const success = await onAdd({ title, note, priority, dueDate: dueDate || null, dueTime: dueTime || null })
+        const success = await onAdd({ title, note, priority, dueDate, dueTime })
         
         if (success) {
             setTitle('')
