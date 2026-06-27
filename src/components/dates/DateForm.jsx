@@ -40,6 +40,7 @@ export default function DateForm({ onAdd, errors, onSuccess, onCancel }) {
             value={date}
             onChange={(e) => setDate(e.target.value)}
         />
+        {errors.date && <p>{errors.date}</p>}
 
         <input
             type="time"
