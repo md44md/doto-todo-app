@@ -1,6 +1,6 @@
 import TodoItem from './TodoItem'
 
-export default function TodoList({ todos, loading, onToggle, onDelete }) {
+export default function TodoList({ todos, loading, onToggle, onUpdate, onDelete }) {
   const activeTodos = todos.filter(todo => !todo.completed)
   const completedTodos = todos.filter(todo => todo.completed)
 
@@ -17,6 +17,7 @@ export default function TodoList({ todos, loading, onToggle, onDelete }) {
           key={todo.id}
           todo={todo}
           onToggle={onToggle}
+          onUpdate={onUpdate}
           onDelete={onDelete}
         />
       ))}

@@ -105,6 +105,7 @@ export function useTodos(uid) {
         await deleteDoc(doc(db, 'users', uid, 'todos', todoId))
     }
     
+    // Update a todo
     const updateTodo = useCallback(async (todoId, fields) => {
         await updateDoc(doc(db, 'users', uid, 'todos', todoId), fields)
     }, [uid])

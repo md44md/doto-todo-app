@@ -72,8 +72,8 @@ export default function HomePage() {
         )}
 
         <div style={{ display: 'flex', gap: '24px' }}>
-          <TodoList todos={todos} loading={todosLoading} onToggle={toggleTodo} onDelete={deleteTodo} />
-          <DateList dates={dates} loading={datesLoading} onDelete={deleteDate} />
+          <TodoList todos={todos} loading={todosLoading} onToggle={toggleTodo} onUpdate={updateTodo} onDelete={deleteTodo} />
+          <DateList dates={dates} loading={datesLoading} onUpdate={updateDate} onDelete={deleteDate} />
         </div>
       </main>
     </div>
