@@ -16,8 +16,10 @@ export function checkItemForNotification(item, now) {
     const shouldNotifyDate = isToday && item.dateNotifiedFor !== todayString;
     
     let shouldNotifyTime = false;
+    let shouldNotifyNow = false;
 
     if (item.time && isToday) {
+        // Calculate current time from time
         const [hours, minutes] = item.time.split(':').map(Number);
         const itemDateTime = new Date(now);
         itemDateTime.setHours(hours, minutes, 0, 0);
@@ -25,11 +27,13 @@ export function checkItemForNotification(item, now) {
         const msUntilItem = itemDateTime.getTime() - now.getTime();
         const minutesUntilItem = msUntilItem / (1000 * 60);
 
-        const isWithinWindow = minutesUntilItem >= 0 && minutesUntilItem <= TIME_WINDOW_MINUTES;
+        const isWithinTimeWindow = minutesUntilItem >= 0 && minutesUntilItem <= TIME_WINDOW_MINUTES;
+        shouldNotifyTime = isWithinTimeWindow && item.timeNotifiedFor !== todayString;
 
-        shouldNotifyTime = isWithinWindow && item.timeNotifiedFor !== todayString;
+        const isWithinNowWindow = minutesUntilItem >= -1 && minutesUntilItem <= 1;
+        shouldNotifyNow = isWithinNowWindow && item.nowNotifiedFor !== todayString;
     }
-    return { shouldNotifyDate, shouldNotifyTime };
+    return { shouldNotifyDate, shouldNotifyTime, shouldNotifyNow };
 }
 
 // Ask browser for notif permission

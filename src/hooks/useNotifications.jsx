@@ -14,7 +14,7 @@ export function useNotifications(groups) {
 
             for (const group of groups){
                 for (const item of group.items){
-                    const {shouldNotifyDate, shouldNotifyTime} = checkItemForNotification(item, now);
+                    const {shouldNotifyDate, shouldNotifyTime, shouldNotifyNow} = checkItemForNotification(item, now);
 
                     if (shouldNotifyDate){
                         new Notification("Due today", { body: item.title });
@@ -24,6 +24,11 @@ export function useNotifications(groups) {
                     if (shouldNotifyTime){
                         new Notification("Coming up soon", { body: item.title });
                         group.updateItem(item.id, { timeNotifiedFor: todayString });
+                    }
+                    
+                    if (shouldNotifyNow){
+                        new Notification("Starting now", { body: item.title });
+                        group.updateItem(item.id, { nowNotifiedFor: todayString });
                     }
                 }
             }
