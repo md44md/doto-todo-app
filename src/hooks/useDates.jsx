@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import {
   collection,
   addDoc,
@@ -12,6 +12,7 @@ import {
 } from 'firebase/firestore'
 import { db } from '../lib/firebase'
 import { validateTitle } from '../validators/titleValidator'
+import { requestNotificationPermission } from '../lib/notifications'
 
 function sortDates(dates) {
     return [...dates].sort((a, b) => {
@@ -75,6 +76,11 @@ export function useDates(uid) {
         }
 
         setErrors({})
+
+        if (date) {
+            await requestNotificationPermission()
+        }        
+        
         await addDoc(collection(db, 'users', uid, 'dates'), {
             title: title.trim(),
             note: note.trim(),
@@ -85,10 +91,15 @@ export function useDates(uid) {
         })
         return true
     }
-        // Delete a date
+        
+    // Delete a date
     async function deleteDate(dateId) {
         await deleteDoc(doc(db, 'users', uid, 'dates', dateId))
     }
 
-    return { dates, loading, errors, addDate, deleteDate }
+    const updateDate = useCallback(async (dateId, fields) => {
+        await updateDoc(doc(db, 'users', uid, 'dates', dateId), fields)
+    }, [uid])    
+
+    return { dates, loading, errors, addDate, deleteDate, updateDate }
 }

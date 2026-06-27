@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import {
   collection,
   addDoc,
@@ -12,6 +12,7 @@ import {
 } from 'firebase/firestore'
 import { db } from '../lib/firebase'
 import { validateTitle } from '../validators/titleValidator'
+import { requestNotificationPermission } from '../lib/notifications'
 
 // sort by due date first, then by priority
 const PRIORITY_ORDER = { high: 1, normal: 2, low: 3 }
@@ -75,6 +76,11 @@ export function useTodos(uid) {
         }
 
         setErrors({})
+
+        if (dueDate) {
+            await requestNotificationPermission()
+        }        
+        
         await addDoc(collection(db, 'users', uid, 'todos'), {
             title: title.trim(),
             note,
@@ -98,6 +104,10 @@ export function useTodos(uid) {
     async function deleteTodo(todoId) {
         await deleteDoc(doc(db, 'users', uid, 'todos', todoId))
     }
+    
+    const updateTodo = useCallback(async (todoId, fields) => {
+        await updateDoc(doc(db, 'users', uid, 'todos', todoId), fields)
+    }, [uid])
 
-    return { todos, loading, errors, addTodo, toggleTodo, deleteTodo }
+    return { todos, loading, errors, addTodo, toggleTodo, deleteTodo, updateTodo }
 }

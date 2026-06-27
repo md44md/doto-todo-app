@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useAuth } from '../lib/AuthContext'
 import { useTodos } from '../hooks/useTodos'
 import { useDates } from '../hooks/useDates'
 import { signOut } from 'firebase/auth'
 import { auth } from '../lib/firebase'
+import { useNotifications } from '../hooks/useNotifications'
 
 import TodoList from '../components/todos/TodoList'
 import TodoForm from '../components/todos/TodoForm'
@@ -12,8 +13,8 @@ import DateForm from '../components/dates/DateForm'
 
 export default function HomePage() {
   const { user } = useAuth()
-  const { dates, loading: datesLoading, errors: datesErrors, addDate, deleteDate } = useDates(user.uid)
-  const { todos, loading: todosLoading, errors: todosErrors, addTodo, toggleTodo, deleteTodo } = useTodos(user.uid)
+  const { dates, loading: datesLoading, errors: datesErrors, addDate, updateDate,          deleteDate } = useDates(user.uid)
+  const { todos, loading: todosLoading, errors: todosErrors, addTodo, toggleTodo, updateTodo, deleteTodo } = useTodos(user.uid)
 
   const [modalOpen, setModalOpen] = useState(false)
   const [formType, setFormType] = useState(null)
@@ -27,6 +28,17 @@ export default function HomePage() {
     setModalOpen(false)
     setFormType(null)
   }
+
+  const notificationGroups = useMemo(
+    () => [
+        { items: todos.map(todo => ({ ...todo, date: todo.dueDate, time: todo.dueTime })),
+      updateItem: updateTodo, },
+        { items: dates, updateItem: updateDate },
+    ],
+    [todos, dates, updateTodo, updateDate]
+  );
+
+  useNotifications(notificationGroups);
 
   return (
     <div>
