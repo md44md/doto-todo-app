@@ -94,6 +94,13 @@ export function useDates(uid) {
             createdAt: serverTimestamp(),
         })
         return true
+    }    
+    
+    // Toggle completed on/off
+    async function toggleDate(dateId, currentValue) {
+        await updateDoc(doc(db, 'users', uid, 'dates', dateId), {
+            completed: !currentValue,
+        })
     }
         
     // Delete a date
@@ -119,5 +126,5 @@ export function useDates(uid) {
         return true
     }, [uid])    
 
-    return { dates, loading, errors, addDate, deleteDate, updateDate }
+    return { dates, loading, errors, addDate, toggleDate, deleteDate, updateDate }
 }

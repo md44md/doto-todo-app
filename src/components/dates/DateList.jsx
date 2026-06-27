@@ -16,6 +16,7 @@ export default function DateList({ dates, loading, errors, onAdd, onToggle, onUp
         <DateItem
           key={date.id}
           date={date}
+          onToggle={onToggle}
           onUpdate={onUpdate}
           onDelete={onDelete}
           errors={errors}
@@ -29,6 +30,7 @@ export default function DateList({ dates, loading, errors, onAdd, onToggle, onUp
             <DateItem
               key={date.id}
               date={date}
+              onToggle={onToggle}
               onDelete={onDelete}
             />
           ))}
