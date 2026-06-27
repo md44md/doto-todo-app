@@ -64,7 +64,7 @@ export default function TodoItem({ todo, onToggle, onUpdate, onDelete, errors })
   }
 
   return (
-    <div>
+    <div className="item">
       <input
         type="checkbox"
         checked={todo.completed}

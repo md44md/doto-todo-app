@@ -20,41 +20,41 @@ export default function TodoForm({ onAdd, errors, onSuccess, onCancel }) {
     }
     return (
         <div>
-        <input
-            type="text"
-            placeholder="Task title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-        />
-        {errors.title && <p>{errors.title}</p>}
+            <input
+                type="text"
+                placeholder="Task title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+            />
+            {errors.title && <p>{errors.title}</p>}
 
-        <textarea
-            placeholder="Note (optional)"
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
-        />
+            <textarea
+                placeholder="Note (optional)"
+                value={note}
+                onChange={(e) => setNote(e.target.value)}
+            />
 
-        <select value={priority} onChange={(e) => setPriority(e.target.value)}>
-            <option value="high">High</option>
-            <option value="normal">Normal</option>
-            <option value="low">Low</option>
-        </select>
+            <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+                <option value="high">High</option>
+                <option value="normal">Normal</option>
+                <option value="low">Low</option>
+            </select>
 
-        <input
-            type="date"
-            value={dueDate}
-            onChange={(e) => setDueDate(e.target.value)}
-        />
+            <input
+                type="date"
+                value={dueDate}
+                onChange={(e) => setDueDate(e.target.value)}
+            />
 
-        <input
-            type="time"
-            value={dueTime}
-            onChange={(e) => setDueTime(e.target.value)}
-        />
+            <input
+                type="time"
+                value={dueTime}
+                onChange={(e) => setDueTime(e.target.value)}
+            />
 
 
-        <button onClick={handleSubmit}>Add Task</button>
-        <button onClick={onCancel}>Cancel</button>
+            <button onClick={handleSubmit}>Add Task</button>
+            <button onClick={onCancel}>Cancel</button>
         </div>
     )
 }

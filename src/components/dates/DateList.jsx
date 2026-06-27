@@ -7,7 +7,7 @@ export default function DateList({ dates, loading, errors, onAdd, onToggle, onUp
   if (loading) return <p>Loading...</p>
 
   return (
-    <div>
+    <div className='todo-date-col'>
       <h2>My Dates</h2>
 
       {activeDates.length === 0 && <p>No dates yet — add one above!</p>}

@@ -7,7 +7,7 @@ export default function TodoList({ todos, loading, errors, onToggle, onUpdate, o
   if (loading) return <p>Loading...</p>
 
   return (
-    <div>
+    <div className='todo-items-col'>
       <h2>My Tasks</h2>
 
       {activeTodos.length === 0 && <p>No tasks yet — add one above!</p>}
