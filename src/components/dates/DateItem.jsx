@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export default function DateItem({ date, onUpdate, onDelete, errors }) {
+export default function DateItem({ date, onToggle, onUpdate, onDelete, errors }) {
   const [isEditing, setIsEditing] = useState(false)
   const [editTitle, setEditTitle] = useState(date.title)  
   const [editNote, setEditNote] = useState(date.note || '')
@@ -57,8 +57,14 @@ export default function DateItem({ date, onUpdate, onDelete, errors }) {
 
   return (
     <div>
+      <input
+        type="checkbox"
+        checked={date.completed}
+        onChange={() => onToggle(date.id, date.completed)}
+      />
+
       <div>
-        <p>
+        <p style={{ textDecoration: date.completed ? 'line-through' : 'none' }}>
           {date.title}
         </p>
         {date.note && <p>{date.note}</p>}
