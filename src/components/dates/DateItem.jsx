@@ -56,7 +56,7 @@ export default function DateItem({ date, onToggle, onUpdate, onDelete, errors })
   }
 
   return (
-    <div>
+    <div className="item">
       <input
         type="checkbox"
         checked={date.completed}

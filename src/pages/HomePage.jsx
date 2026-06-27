@@ -41,15 +41,20 @@ export default function HomePage() {
   useNotifications(notificationGroups);
 
   return (
-    <div>
-      <header>
-        <h1>Doto Todo app</h1>
+    <div className={"app-container"}>
+      <header className="app-header-container">
+        <h1 className="app-header">Doto Todo app</h1>
         <p>Welcome, {user.email}</p>
         <button onClick={() => signOut(auth)}>Sign out</button>
       </header>
 
       <main>
-        <button onClick={() => setModalOpen(true)}>+ Add</button>
+        <div className="todo-list-container">
+          <DateList dates={dates} errors={datesErrors} loading={datesLoading} onToggle={toggleDate} onUpdate={updateDate} onDelete={deleteDate} />
+          <TodoList todos={todos} errors={todosErrors} loading={todosLoading} onToggle={toggleTodo} onUpdate={updateTodo} onDelete={deleteTodo} />
+        </div>
+
+        <button className={"add-button"} onClick={() => setModalOpen(true)}>+</button>
 
         {modalOpen && !formType && (
           <div className="modal">
@@ -70,11 +75,6 @@ export default function HomePage() {
             <DateForm onAdd={addDate} errors={datesErrors} onSuccess={closeModal} onCancel={closeModal} />
           </div>
         )}
-
-        <div style={{ display: 'flex', gap: '24px' }}>
-          <TodoList todos={todos} errors={todosErrors} loading={todosLoading} onToggle={toggleTodo} onUpdate={updateTodo} onDelete={deleteTodo} />
-          <DateList dates={dates} errors={datesErrors} loading={datesLoading} onToggle={toggleDate} onUpdate={updateDate} onDelete={deleteDate} />
-        </div>
       </main>
     </div>
   )

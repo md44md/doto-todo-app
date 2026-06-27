@@ -21,40 +21,40 @@ export default function DateForm({ onAdd, errors, onSuccess, onCancel }) {
     }
     return (
         <div>
-        <input
-            type="text"
-            placeholder="Date title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-        />
-        {errors.title && <p>{errors.title}</p>}
+            <input
+                type="text"
+                placeholder="Date title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+            />
+            {errors.title && <p>{errors.title}</p>}
 
-        <textarea
-            placeholder="Note (optional)"
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
-        />
+            <textarea
+                placeholder="Note (optional)"
+                value={note}
+                onChange={(e) => setNote(e.target.value)}
+            />
 
-        <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-        />
-        {errors.date && <p>{errors.date}</p>}
+            <input
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+            />
+            {errors.date && <p>{errors.date}</p>}
 
-        <input
-            type="time"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-        />
+            <input
+                type="time"
+                value={time}
+                onChange={(e) => setTime(e.target.value)}
+            />
 
-        <select value={repeat} onChange={(e) => setRepeat(e.target.value)}>
-            <option value="none">Does not repeat</option>
-            <option value="yearly">Repeats yearly</option>
-        </select>
+            <select value={repeat} onChange={(e) => setRepeat(e.target.value)}>
+                <option value="none">Does not repeat</option>
+                <option value="yearly">Repeats yearly</option>
+            </select>
 
-        <button onClick={handleSubmit}>Add Date</button>
-        <button onClick={onCancel}>Cancel</button>
+            <button onClick={handleSubmit}>Add Date</button>
+            <button onClick={onCancel}>Cancel</button>
         </div>
     )
 }
