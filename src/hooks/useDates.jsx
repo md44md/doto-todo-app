@@ -124,7 +124,10 @@ export function useDates(uid) {
 
         await updateDoc(doc(db, 'users', uid, 'dates', dateId), fields)
         return true
-    }, [uid])    
+    }, [uid])
+     
+    function clearErrors() {
+        setErrors({})
 
-    return { dates, loading, errors, addDate, toggleDate, deleteDate, updateDate }
+    }    return { dates, loading, errors, addDate, toggleDate, deleteDate, updateDate, clearErrors }
 }

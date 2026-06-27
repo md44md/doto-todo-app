@@ -122,5 +122,9 @@ export function useTodos(uid) {
         return true
     }, [uid])
 
-    return { todos, loading, errors, addTodo, toggleTodo, deleteTodo, updateTodo }
+    function clearErrors() {
+        setErrors({})
+    }
+
+    return { todos, loading, errors, addTodo, toggleTodo, deleteTodo, updateTodo, clearErrors }
 }

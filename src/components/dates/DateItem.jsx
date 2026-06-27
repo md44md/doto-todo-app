@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export default function DateItem({ date, onToggle, onUpdate, onDelete, errors }) {
+export default function DateItem({ date, onToggle, onUpdate, onDelete, errors, clearErrors }) {
   const [isEditing, setIsEditing] = useState(false)
   const [editTitle, setEditTitle] = useState(date.title)  
   const [editNote, setEditNote] = useState(date.note || '')
@@ -14,6 +14,12 @@ export default function DateItem({ date, onToggle, onUpdate, onDelete, errors })
     }
   }
 
+  function startEditing() {
+    setIsEditing(true)
+    clearErrors()
+  }
+
+
   function handleCancel() {
     setEditTitle(date.title)
     setEditNote(date.note)
@@ -21,6 +27,7 @@ export default function DateItem({ date, onToggle, onUpdate, onDelete, errors })
     setEditTime(date.time)
 
     setIsEditing(false)
+    clearErrors()
   }
   
   if (isEditing) {
@@ -73,7 +80,7 @@ export default function DateItem({ date, onToggle, onUpdate, onDelete, errors })
         {date.repeat === 'yearly' && <span> 🔁 Repeats yearly</span>}
       </div>
 
-      <button onClick={() => setIsEditing(true)}>Edit</button>
+      <button onClick={startEditing}>Edit</button>
       <button onClick={() => onDelete(date.id)}>Delete</button>
     </div>
   )

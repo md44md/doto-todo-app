@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export default function TodoItem({ todo, onToggle, onUpdate, onDelete, errors }) {
+export default function TodoItem({ todo, onToggle, onUpdate, onDelete, errors, clearErrors }) {
   const [isEditing, setIsEditing] = useState(false)
   const [editTitle, setEditTitle] = useState(todo.title)  
   const [editNote, setEditNote] = useState(todo.note || '')
@@ -16,6 +16,11 @@ export default function TodoItem({ todo, onToggle, onUpdate, onDelete, errors })
     }
   }
 
+  function startEditing() {
+    setIsEditing(true)
+    clearErrors()
+  }
+
   function handleCancel() {
     setEditTitle(todo.title)
     setEditNote(todo.note)
@@ -24,6 +29,7 @@ export default function TodoItem({ todo, onToggle, onUpdate, onDelete, errors })
     setEditDueTime(todo.dueTime)
 
     setIsEditing(false)
+    clearErrors()
   }
 
   if (isEditing) {
@@ -81,7 +87,7 @@ export default function TodoItem({ todo, onToggle, onUpdate, onDelete, errors })
         <p>Priority: {todo.priority}</p>
       </div>
 
-      <button onClick={() => setIsEditing(true)}>Edit</button>
+      <button onClick={startEditing}>Edit</button>
       <button onClick={() => onDelete(todo.id)}>Delete</button>
     </div>
   )
