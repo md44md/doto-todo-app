@@ -46,14 +46,14 @@ export default function HomePage() {
   useNotifications(notificationGroups);
 
   return (
-    <div className={"app-container"}>
+    <div className="app-container">
       <header className="app-header-container">
         <div className="app-title-container">
           <h1 className="app-title">Doto Todo app</h1>
           <img className="app-logo" src={logo} alt="Logo"/>
         </div>
         <p>Welcome, {user.email}</p>
-        <button className="btn-secondary" onClick={() => signOut(auth)}>Sign out</button>
+        <button className="btn-secondary sign-out" onClick={() => signOut(auth)}>Sign out</button>
       </header>
 
       <main>
