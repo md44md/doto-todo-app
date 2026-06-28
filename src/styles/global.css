@@ -163,13 +163,10 @@ body {
 .form-row {
   display: flex;
   gap: 0.75rem;
-  flex-wrap: nowrap;
 }
 
 .form-row .form-input {
-  flex: 1 1 0; /* date and time inputs split the row evenly, the "0" basis ignores content size entirely when dividing space */
-  min-width: 0;
-  width: auto; /* let flex-basis control sizing instead of width:100% fighting it */
+  flex: 1; /* date and time inputs split the row evenly */
 }
 
 /* Inputs */
@@ -207,7 +204,8 @@ body {
 /* Fix for mobile overflow */
 .form-input[type="date"],
 .form-input[type="time"] {
-  min-width: 0; /* allows the input to shrink below its native intrinsic width */
+  display: block;
+  width: 100%;
   box-sizing: border-box;
 }
 
