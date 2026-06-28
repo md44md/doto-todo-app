@@ -10,6 +10,7 @@ import TodoList from '../components/todos/TodoList'
 import TodoForm from '../components/todos/TodoForm'
 import DateList from '../components/dates/DateList'
 import DateForm from '../components/dates/DateForm'
+import logo from '../styles/doto.webp'
 
 export default function HomePage() {
   const { user } = useAuth()
@@ -47,7 +48,10 @@ export default function HomePage() {
   return (
     <div className={"app-container"}>
       <header className="app-header-container">
-        <h1 className="app-header">Doto Todo app</h1>
+        <div className="app-title-container">
+          <h1 className="app-title">Doto Todo app</h1>
+          <img className="app-logo" src={logo} alt="Logo"/>
+        </div>
         <p>Welcome, {user.email}</p>
         <button className="btn-secondary" onClick={() => signOut(auth)}>Sign out</button>
       </header>

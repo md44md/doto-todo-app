@@ -2,6 +2,8 @@
 
 A todo list and important-dates tracker built with React and Firebase. Built as a personal project to learn React fundamentals beyond tutorials — state management, custom hooks, component structure, and working with a real backend (Firebase Auth + Firestore).
 
+**Live demo:** [md44md.github.io/doto-todo-app](https://md44md.github.io/doto-todo-app/)
+
 ## Features
 
 - **Email/password and Google sign-in** via Firebase Authentication
@@ -19,6 +21,18 @@ A todo list and important-dates tracker built with React and Firebase. Built as 
 - **Firebase** — Authentication (email/password + Google) and Firestore (database)
 - **Browser Notifications API**
 - Plain CSS (no framework), organized with CSS variables and a shared `global.css`
+
+## Usage
+
+1. Sign up or sign in (email/password or Google)
+2. Tap the floating **+** button to add a new task or important date
+3. Tasks can be checked off, edited inline, or deleted from their card
+4. Important dates support a yearly repeat option, useful for birthdays or anniversaries
+5. If notifications are enabled, you'll get a browser notification when a task or date is due
+
+### Notifications on iOS
+
+Browser notifications work out of the box on Android and desktop browsers. **On iOS, Apple only allows web notifications for sites added to the Home Screen** (Safari → Share → "Add to Home Screen"), regardless of which browser you're using — this is a platform restriction, not specific to this app. Opening the link directly in a Safari or Chrome tab on iPhone will not show notifications, but the rest of the app works normally either way.
 
 ## Project Structure
 
@@ -76,8 +90,10 @@ src/
 - The difference between plain CSS and CSS Modules, and when global class names are "good enough" vs. when scoping matters
 - Debugging real layout issues (flexbox stretch behavior, `#root` sizing) by inspecting computed styles rather than guessing
 - Building a notification system with a self-resetting schema (date-string tracking fields) instead of writing explicit reset logic
+- Debugging a real cross-device bug (a white-screen crash on iPhone) by reading an actual stack trace instead of guessing, and discovering it was caused by a platform limitation (`Notification` API not existing in iOS Safari) rather than a logic bug — fixed with a feature-detection guard (`"Notification" in window`)
 
 ## Future Improvements
 
+- Full PWA setup (manifest + service worker) so iOS notifications work without manual Home Screen setup
 - In-app notification banner alongside browser push notifications
 - Further visual polish and possibly a dark mode

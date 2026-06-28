@@ -43,7 +43,20 @@ body {
   align-items: flex-start;
 }
 
-.app-header {
+.app-title-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.app-logo {
+  max-width: 5rem;
+  max-height: 5rem;
+  width: 100%;
+  height: auto;
+}
+
+.app-title {
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: -0.03em;
