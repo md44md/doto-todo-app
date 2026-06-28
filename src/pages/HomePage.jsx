@@ -68,8 +68,8 @@ export default function HomePage() {
           <div className="modal-overlay">
             <div className="modal-card">
               <div className="add-choice-buttons">
-                <button className="btn-primary" onClick={() => openModal('todo')}>Add Task</button>
                 <button className="btn-primary" onClick={() => openModal('date')}>Add Date</button>
+                <button className="btn-primary" onClick={() => openModal('todo')}>Add Task</button>
                 <button className="btn-secondary" onClick={closeModal}>Cancel</button>
               </div>
             </div>
