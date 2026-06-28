@@ -10,7 +10,7 @@ export default function DateList({ dates, loading, errors, onAdd, onToggle, onUp
     <div className='todo-date-col'>
       <h2>My Dates</h2>
 
-      {activeDates.length === 0 && <p>No dates yet — add one above!</p>}
+      {activeDates.length === 0 && <p>No dates yet — add one now!</p>}
 
       {activeDates.map(date => (
         <DateItem
