@@ -5,6 +5,7 @@ const CHECK_INTERVAL_MS = 60 * 1000; // Check every minute
 
 export function useNotifications(groups) {
     useEffect(() => {
+        if (!("Notification" in window)) return;   
         if (Notification.permission !== 'granted') return;
 
         function runCheck() {
