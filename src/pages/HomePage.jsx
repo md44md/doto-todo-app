@@ -46,14 +46,14 @@ export default function HomePage() {
   useNotifications(notificationGroups);
 
   return (
-    <div className={"app-container"}>
+    <div className="app-container">
       <header className="app-header-container">
         <div className="app-title-container">
-          <h1 className="app-title">Doto Todo app</h1>
+          <h1 className="app-title">Doto Todo App</h1>
           <img className="app-logo" src={logo} alt="Logo"/>
         </div>
         <p>Welcome, {user.email}</p>
-        <button className="btn-secondary" onClick={() => signOut(auth)}>Sign out</button>
+        <button className="btn-secondary sign-out" onClick={() => signOut(auth)}>Sign out</button>
       </header>
 
       <main>
@@ -68,8 +68,8 @@ export default function HomePage() {
           <div className="modal-overlay">
             <div className="modal-card">
               <div className="add-choice-buttons">
-                <button className="btn-primary" onClick={() => openModal('todo')}>Add Task</button>
                 <button className="btn-primary" onClick={() => openModal('date')}>Add Date</button>
+                <button className="btn-primary" onClick={() => openModal('todo')}>Add Task</button>
                 <button className="btn-secondary" onClick={closeModal}>Cancel</button>
               </div>
             </div>

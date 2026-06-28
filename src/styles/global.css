@@ -1,5 +1,5 @@
 :root {
-  --bg-color: #f9fafb;
+  --bg-color: #e2f0ff;
   --text-main: #1f2937;
   --text-muted: #6b7280;
   --accent-color: #3b82f6; /* Muted Blue */
@@ -201,6 +201,14 @@ body {
   font-size: 0.8rem;
 }
 
+/* Fix for mobile overflow */
+.form-input[type="date"],
+.form-input[type="time"] {
+  min-width: 0; /* allows the input to shrink below its native intrinsic width */
+  width: 100%;
+  box-sizing: border-box;
+}
+
 /* Buttons */
 .form-actions, .item-actions {
   display: flex;
@@ -353,6 +361,11 @@ body {
 
 .btn-link:hover {
   text-decoration: underline;
+}
+
+/* Sign out button in homepage */
+.sign-out {
+  background-color: white;
 }
 
 /* Scale to mobile */
