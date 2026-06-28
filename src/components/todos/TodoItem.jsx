@@ -60,15 +60,13 @@ export default function TodoItem({ todo, onToggle, onUpdate, onDelete, errors, c
             </select>
           </div> 
 
-          <div className="form-field">
+          <div className="form-row">
             <input
               className="form-input"
               type="date"
               value={editDueDate}
               onChange={(e) => setEditDueDate(e.target.value)}
             />
-          </div> 
-          <div className="form-field">
             <input
               className="form-input"
               type="time"

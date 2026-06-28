@@ -50,16 +50,13 @@ export default function DateItem({ date, onToggle, onUpdate, onDelete, errors, c
             />
           </div>
 
-          <div className="form-field">
+          <div className="form-form">
             <input
               className="form-input"
               type="date"
               value={editDate}
               onChange={(e) => setEditDate(e.target.value)}
             />
-          </div>
-
-          <div className="form-field">
             <input
               className="form-input"
               type="time"
