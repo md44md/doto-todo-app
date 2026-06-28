@@ -20,41 +20,54 @@ export default function DateForm({ onAdd, errors, onSuccess, onCancel }) {
         }
     }
     return (
-        <div>
-            <input
-                type="text"
-                placeholder="Date title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-            />
+        <div className="form">
+            <div className="form-field">
+                <input
+                    className="form-input"
+                    type="text"
+                    placeholder="Date title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                />
+            </div>
 
-            <textarea
-                placeholder="Note (optional)"
-                value={note}
-                onChange={(e) => setNote(e.target.value)}
-            />
+            <div  className="form-field">
+                <textarea
+                    className="form-textarea"
+                    placeholder="Note (optional)"
+                    value={note}
+                    onChange={(e) => setNote(e.target.value)}
+                />
+            </div> 
 
-            <input
-                type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-            />
+            <div className="form-row">
+                <input
+                    className="form-input"
+                    type="date"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                />
+                <input
+                    className="form-input"
+                    type="time"
+                    value={time}
+                    onChange={(e) => setTime(e.target.value)}
+                />
+            </div>
 
-            <input
-                type="time"
-                value={time}
-                onChange={(e) => setTime(e.target.value)}
-            />
+            <div className="form-field">
+                <select className="form-select" value={repeat} onChange={(e) => setRepeat(e.target.value)}>
+                    <option value="none">Does not repeat</option>
+                    <option value="yearly">Repeats yearly</option>
+                </select>
+            </div>
 
-            <select value={repeat} onChange={(e) => setRepeat(e.target.value)}>
-                <option value="none">Does not repeat</option>
-                <option value="yearly">Repeats yearly</option>
-            </select>
-
-            {errors.title && <p>{errors.title}</p>}
-            {errors.date && <p>{errors.date}</p>}
-            <button onClick={handleSubmit}>Add Date</button>
-            <button onClick={onCancel}>Cancel</button>
+            {errors.title && <p className="form-error">{errors.title}</p>}
+            {errors.date && <p className="form-error">{errors.date}</p>}
+            <div className="form-actions">
+                <button className="btn-primary" onClick={handleSubmit}>Add Date</button>
+                <button className="btn-secondary" onClick={onCancel}>Cancel</button>
+            </div>
         </div>
     )
 }

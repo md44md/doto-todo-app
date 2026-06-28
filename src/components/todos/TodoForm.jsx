@@ -19,41 +19,54 @@ export default function TodoForm({ onAdd, errors, onSuccess, onCancel }) {
         }
     }
     return (
-        <div>
-            <input
-                type="text"
-                placeholder="Task title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-            />
+        <div className="form">
+            <div className="form-field">
+                <input
+                    className="form-input"
+                    type="text"
+                    placeholder="Task title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                />
+            </div>
 
-            <textarea
-                placeholder="Note (optional)"
-                value={note}
-                onChange={(e) => setNote(e.target.value)}
-            />
+            <div  className="form-field">
+                <textarea
+                    className="form-textarea"
+                    placeholder="Note (optional)"
+                    value={note}
+                    onChange={(e) => setNote(e.target.value)}
+                />
+            </div> 
 
-            <select value={priority} onChange={(e) => setPriority(e.target.value)}>
-                <option value="high">High</option>
-                <option value="normal">Normal</option>
-                <option value="low">Low</option>
-            </select>
+            <div className="form-field">
+                <select className="form-select" value={priority} onChange={(e) => setPriority(e.target.value)}>
+                    <option value="high">High</option>
+                    <option value="normal">Normal</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
 
-            <input
-                type="date"
-                value={dueDate}
-                onChange={(e) => setDueDate(e.target.value)}
-            />
+            <div className="form-row">
+                <input
+                    className="form-input"
+                    type="date"
+                    value={dueDate}
+                    onChange={(e) => setDueDate(e.target.value)}
+                />
+                <input
+                    className="form-input"
+                    type="time"
+                    value={dueTime}
+                    onChange={(e) => setDueTime(e.target.value)}
+                />
+            </div>
 
-            <input
-                type="time"
-                value={dueTime}
-                onChange={(e) => setDueTime(e.target.value)}
-            />
-
-            {errors.title && <p>{errors.title}</p>}
-            <button onClick={handleSubmit}>Add Task</button>
-            <button onClick={onCancel}>Cancel</button>
+            {errors.title && <p className="form-error">{errors.title}</p>}
+            <div className="form-actions">
+                <button className="btn-primary" onClick={handleSubmit}>Add Task</button>
+                <button className="btn-secondary" onClick={onCancel}>Cancel</button>
+            </div>
         </div>
     )
 }
