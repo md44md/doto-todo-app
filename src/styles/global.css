@@ -201,7 +201,6 @@ body {
   font-size: 0.8rem;
 }
 
-/* Fix for mobile overflow */
 .form-input[type="date"],
 .form-input[type="time"] {
   display: block;

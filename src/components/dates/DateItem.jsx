@@ -50,7 +50,7 @@ export default function DateItem({ date, onToggle, onUpdate, onDelete, errors, c
             />
           </div>
 
-          <div className="form-form">
+          <div className="form-row">
             <input
               className="form-input"
               type="date"
