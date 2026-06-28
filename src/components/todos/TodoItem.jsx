@@ -34,37 +34,55 @@ export default function TodoItem({ todo, onToggle, onUpdate, onDelete, errors, c
 
   if (isEditing) {
     return (
-      <div>
-        <input
-          value={editTitle}
-          onChange={(e) => setEditTitle(e.target.value)}
-        />
+      <div className="item-editing">
+        <div className="form edit-form">
+          <div className="form-field">
+            <input
+              className="form-input"
+              value={editTitle}
+              onChange={(e) => setEditTitle(e.target.value)}
+            />
+          </div>
 
-        <textarea
-          value={editNote}
-          onChange={(e) => setEditNote(e.target.value)}
-        />
+          <div className="form-field">
+            <textarea
+              className="form-textarea"
+              value={editNote}
+              onChange={(e) => setEditNote(e.target.value)}
+            />
+          </div>
 
-        <select value={editPriority} onChange={(e) => setEditPriority(e.target.value)}>
-            <option value="high">High</option>
-            <option value="normal">Normal</option>
-            <option value="low">Low</option>
-        </select>
+          <div className="form-field">
+            <select className="form-select" value={editPriority} onChange={(e) => setEditPriority(e.target.value)}>
+              <option value="high">High</option>
+              <option value="normal">Normal</option>
+              <option value="low">Low</option>
+            </select>
+          </div> 
 
-        <input
-            type="date"
-            value={editDueDate}
-            onChange={(e) => setEditDueDate(e.target.value)}
-        />
+          <div className="form-field">
+            <input
+              className="form-input"
+              type="date"
+              value={editDueDate}
+              onChange={(e) => setEditDueDate(e.target.value)}
+            />
+          </div> 
+          <div className="form-field">
+            <input
+              className="form-input"
+              type="time"
+              value={editDueTime}
+              onChange={(e) => setEditDueTime(e.target.value)}
+            />
+          </div>
 
-        <input
-            type="time"
-            value={editDueTime}
-            onChange={(e) => setEditDueTime(e.target.value)}
-        />
-        {errors.title && <p>{errors.title}</p>}
-        <button onClick={handleSave}>Save</button>
-        <button onClick={handleCancel}>Cancel</button>
+          {errors.title && <p className="form-error">{errors.title}</p>}
+          <div className="form-actions">
+            <button className="btn-primary" onClick={handleSave}>Save</button>
+            <button className="btn-secondary" onClick={handleCancel}>Cancel</button>
+          </div>
+        </div>   
       </div>
     )
   }
@@ -87,8 +105,10 @@ export default function TodoItem({ todo, onToggle, onUpdate, onDelete, errors, c
         <p>Priority: {todo.priority}</p>
       </div>
 
-      <button onClick={startEditing}>Edit</button>
-      <button onClick={() => onDelete(todo.id)}>Delete</button>
+      <div className="item-actions">
+        <button className="btn-primary" onClick={startEditing}>Edit</button>
+        <button className="btn-secondary" onClick={() => onDelete(todo.id)}>Delete</button>
+      </div>
     </div>
   )
 }

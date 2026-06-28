@@ -32,32 +32,49 @@ export default function DateItem({ date, onToggle, onUpdate, onDelete, errors, c
   
   if (isEditing) {
     return (
-      <div>
-        <input
-          value={editTitle}
-          onChange={(e) => setEditTitle(e.target.value)}
-        />
+      <div className="item-editing">
+        <div className="form edit-form">
+          <div className="form-field">
+            <input
+              className="form-input"
+              value={editTitle}
+              onChange={(e) => setEditTitle(e.target.value)}
+            />
+          </div>
 
-        <textarea
-          value={editNote}
-          onChange={(e) => setEditNote(e.target.value)}
-        />
+          <div className="form-field">
+            <textarea
+              className="form-textarea"
+              value={editNote}
+              onChange={(e) => setEditNote(e.target.value)}
+            />
+          </div>
 
-        <input
-            type="date"
-            value={editDate}
-            onChange={(e) => setEditDate(e.target.value)}
-        />
+          <div className="form-field">
+            <input
+              className="form-input"
+              type="date"
+              value={editDate}
+              onChange={(e) => setEditDate(e.target.value)}
+            />
+          </div>
 
-        <input
-            type="time"
-            value={editTime}
-            onChange={(e) => setEditTime(e.target.value)}
-        />
-        {errors.title && <p>{errors.title}</p>}
-        {errors.date && <p>{errors.date}</p>}
-        <button onClick={handleSave}>Save</button>
-        <button onClick={handleCancel}>Cancel</button>
+          <div className="form-field">
+            <input
+              className="form-input"
+              type="time"
+              value={editTime}
+              onChange={(e) => setEditTime(e.target.value)}
+            />
+          </div>
+
+          {errors.title && <p className="form-error">{errors.title}</p>}
+          {errors.date && <p className="form-error">{errors.date}</p>}
+          <div className="form-actions">
+            <button className="btn-primary" onClick={handleSave}>Save</button>
+            <button className="btn-secondary" onClick={handleCancel}>Cancel</button>
+          </div>
+        </div>
       </div>
     )
   }
@@ -80,8 +97,10 @@ export default function DateItem({ date, onToggle, onUpdate, onDelete, errors, c
         {date.repeat === 'yearly' && <span> 🔁 Repeats yearly</span>}
       </div>
 
-      <button onClick={startEditing}>Edit</button>
-      <button onClick={() => onDelete(date.id)}>Delete</button>
+      <div className="item-actions">
+        <button className="btn-primary" onClick={startEditing}>Edit</button>
+        <button className="btn-secondary" onClick={() => onDelete(date.id)}>Delete</button>
+      </div>
     </div>
   )
 }

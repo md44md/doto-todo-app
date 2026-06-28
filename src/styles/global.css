@@ -101,6 +101,13 @@ body {
 .add-button:hover {
   background-color: var(--accent-hover);
 }
+
+.add-choice-buttons{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
 /* Form */
 /* Dimmed backdrop covering the whole screen */
 .modal-overlay {
@@ -182,7 +189,7 @@ body {
 }
 
 /* Buttons */
-.form-actions {
+.form-actions, .item-actions {
   display: flex;
   gap: 0.5rem;
   margin-top: 0.5rem;
@@ -215,8 +222,12 @@ body {
   background-color: #f3f4f6;
 }
 
-.buttons{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+/* Edit Form */
+.form.edit-form {
+  gap: 0.5rem;
+}
+
+.item-editing {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
