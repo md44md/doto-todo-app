@@ -32,7 +32,10 @@ export default function DateList({ dates, loading, errors, onAdd, onToggle, onUp
               key={date.id}
               date={date}
               onToggle={onToggle}
+              onUpdate={onUpdate}
               onDelete={onDelete}
+              errors={errors}
+              clearErrors={clearErrors}
             />
           ))}
         </div>

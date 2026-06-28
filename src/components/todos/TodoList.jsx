@@ -32,7 +32,10 @@ export default function TodoList({ todos, loading, errors, onToggle, onUpdate, o
               key={todo.id}
               todo={todo}
               onToggle={onToggle}
+              onUpdate={onUpdate}
               onDelete={onDelete}
+              errors={errors}
+              clearErrors={clearErrors}
             />
           ))}
         </div>
