@@ -10,7 +10,7 @@ import TodoList from '../components/todos/TodoList'
 import TodoForm from '../components/todos/TodoForm'
 import DateList from '../components/dates/DateList'
 import DateForm from '../components/dates/DateForm'
-import logo from '../styles/doto.webp'
+import logo from '../styles/doto.png'
 
 export default function HomePage() {
   const { user } = useAuth()
