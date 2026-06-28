@@ -49,7 +49,7 @@ export default function HomePage() {
     <div className="app-container">
       <header className="app-header-container">
         <div className="app-title-container">
-          <h1 className="app-title">Doto Todo app</h1>
+          <h1 className="app-title">Doto Todo App</h1>
           <img className="app-logo" src={logo} alt="Logo"/>
         </div>
         <p>Welcome, {user.email}</p>
