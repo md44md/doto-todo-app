@@ -32,56 +32,74 @@ export default function DateItem({ date, onToggle, onUpdate, onDelete, errors, c
   
   if (isEditing) {
     return (
-      <div>
-        <input
-          value={editTitle}
-          onChange={(e) => setEditTitle(e.target.value)}
-        />
+      <div className="item item-editing">
+        <div className="form edit-form">
+          <div className="form-field">
+            <input
+              className="form-input"
+              value={editTitle}
+              onChange={(e) => setEditTitle(e.target.value)}
+            />
+          </div>
 
-        <textarea
-          value={editNote}
-          onChange={(e) => setEditNote(e.target.value)}
-        />
+          <div className="form-field">
+            <textarea
+              className="form-textarea"
+              value={editNote}
+              onChange={(e) => setEditNote(e.target.value)}
+            />
+          </div>
 
-        <input
-            type="date"
-            value={editDate}
-            onChange={(e) => setEditDate(e.target.value)}
-        />
+          <div className="form-field">
+            <input
+              className="form-input"
+              type="date"
+              value={editDate}
+              onChange={(e) => setEditDate(e.target.value)}
+            />
+          </div>
 
-        <input
-            type="time"
-            value={editTime}
-            onChange={(e) => setEditTime(e.target.value)}
-        />
-        {errors.title && <p>{errors.title}</p>}
-        {errors.date && <p>{errors.date}</p>}
-        <button onClick={handleSave}>Save</button>
-        <button onClick={handleCancel}>Cancel</button>
+          <div className="form-field">
+            <input
+              className="form-input"
+              type="time"
+              value={editTime}
+              onChange={(e) => setEditTime(e.target.value)}
+            />
+          </div>
+
+          {errors.title && <p className="form-error">{errors.title}</p>}
+          {errors.date && <p className="form-error">{errors.date}</p>}
+          <div className="form-actions">
+            <button className="btn-primary" onClick={handleSave}>Save</button>
+            <button className="btn-secondary" onClick={handleCancel}>Cancel</button>
+          </div>
+        </div>
       </div>
     )
   }
 
   return (
     <div className="item">
-      <input
-        type="checkbox"
-        checked={date.completed}
-        onChange={() => onToggle(date.id, date.completed)}
-      />
-
-      <div>
-        <p style={{ textDecoration: date.completed ? 'line-through' : 'none' }}>
-          {date.title}
-        </p>
-        {date.note && <p>{date.note}</p>}
-        {date.date && <p>Date: {date.date}</p>}
-        {date.time && <p>Time: {date.time}</p>}
-        {date.repeat === 'yearly' && <span> 🔁 Repeats yearly</span>}
+      <div className="item-main">
+        <input
+          type="checkbox"
+          checked={date.completed}
+          onChange={() => onToggle(date.id, date.completed)}
+        />
+        <div className={date.completed ? 'item-content item-content-done' : 'item-content'}>
+          {date.title && <p>{date.title}</p>}
+          {date.note && <p>{date.note}</p>}
+          {date.date && <p>Date: {date.date}</p>}
+          {date.time && <p>Time: {date.time}</p>}
+          {date.repeat === 'yearly' && <span> 🔁 Repeats yearly</span>}
+        </div>
       </div>
 
-      <button onClick={startEditing}>Edit</button>
-      <button onClick={() => onDelete(date.id)}>Delete</button>
+      <div className="item-actions">
+        <button className="btn-primary" onClick={startEditing}>Edit</button>
+        <button className="btn-secondary" onClick={() => onDelete(date.id)}>Delete</button>
+      </div>
     </div>
   )
 }

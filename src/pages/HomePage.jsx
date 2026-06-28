@@ -49,7 +49,7 @@ export default function HomePage() {
       <header className="app-header-container">
         <h1 className="app-header">Doto Todo app</h1>
         <p>Welcome, {user.email}</p>
-        <button onClick={() => signOut(auth)}>Sign out</button>
+        <button className="btn-secondary" onClick={() => signOut(auth)}>Sign out</button>
       </header>
 
       <main>
@@ -61,22 +61,30 @@ export default function HomePage() {
         <button className={"add-button"} onClick={() => setModalOpen(true)}>+</button>
 
         {modalOpen && !formType && (
-          <div className="modal">
-            <button onClick={() => openModal('todo')}>Add Task</button>
-            <button onClick={() => openModal('date')}>Add Date</button>
-            <button onClick={closeModal}>Cancel</button>
+          <div className="modal-overlay">
+            <div className="modal-card">
+              <div className="add-choice-buttons">
+                <button className="btn-primary" onClick={() => openModal('todo')}>Add Task</button>
+                <button className="btn-primary" onClick={() => openModal('date')}>Add Date</button>
+                <button className="btn-secondary" onClick={closeModal}>Cancel</button>
+              </div>
+            </div>
           </div>
         )}
 
         {modalOpen && formType === 'todo' && (
-          <div className="modal">
-            <TodoForm onAdd={addTodo} errors={todosErrors} onSuccess={closeModal} onCancel={closeModal} />
+          <div className="modal-overlay">
+            <div className="modal-card">
+              <TodoForm onAdd={addTodo} errors={todosErrors} onSuccess={closeModal} onCancel={closeModal} />
+            </div>
           </div>
         )}
 
         {modalOpen && formType === 'date' && (
-          <div className="modal">
-            <DateForm onAdd={addDate} errors={datesErrors} onSuccess={closeModal} onCancel={closeModal} />
+          <div className="modal-overlay">
+            <div className="modal-card">
+              <DateForm onAdd={addDate} errors={datesErrors} onSuccess={closeModal} onCancel={closeModal} />
+            </div>
           </div>
         )}
       </main>

@@ -41,45 +41,58 @@ export default function AuthPage() {
   }
 
   return (
-    <div>
-      <h1>Doto Todo app</h1>
+  <div className="auth-page">
+    <div className="auth-card">
+      <h1 className="app-header">Doto Todo app</h1>
 
-      {/* Google sign in */}
-      <button onClick={handleGoogle}>Continue with Google</button>
-
-      <p>or</p>
-
-      {/* Email + password form */}
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-
-      {/* Show error if any */}
-      {error && <p>{error}</p>}
-
-      <button onClick={handleSubmit} disabled={loading}>
-        {loading ? 'Please wait...' : mode === 'signup' ? 'Create account' : 'Sign in'}
+      <button className="btn-google" onClick={handleGoogle}>
+        Continue with Google
       </button>
 
-      {/* Toggle between sign in and sign up */}
-      <p>
+      <div className="auth-divider">
+        <span>or</span>
+      </div>
+
+      <div className="form">
+        <div className="form-field">
+          <input
+            className="form-input"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+
+        <div className="form-field">
+          <input
+            className="form-input"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+
+        {error && <p className="form-error">{error}</p>}
+
+        <button className="btn-primary" onClick={handleSubmit} disabled={loading}>
+          {loading ? 'Please wait...' : mode === 'signup' ? 'Create account' : 'Sign in'}
+        </button>
+      </div>
+
+      <p className="auth-toggle">
         {mode === 'signin' ? "Don't have an account? " : 'Already have an account? '}
-        <button onClick={() => { setMode(mode === 'signin' ? 'signup' : 'signin'); setError('') }}>
+        <button
+          className="btn-link"
+          onClick={() => { setMode(mode === 'signin' ? 'signup' : 'signin'); setError('') }}
+        >
           {mode === 'signin' ? 'Sign up' : 'Sign in'}
         </button>
       </p>
     </div>
-  )
-}
+  </div>
+)}
 
 function friendlyError(code) {
   const errors = {
