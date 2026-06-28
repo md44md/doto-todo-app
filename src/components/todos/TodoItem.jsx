@@ -34,7 +34,7 @@ export default function TodoItem({ todo, onToggle, onUpdate, onDelete, errors, c
 
   if (isEditing) {
     return (
-      <div className="item-editing">
+      <div className="item item-editing">
         <div className="form edit-form">
           <div className="form-field">
             <input
@@ -89,20 +89,19 @@ export default function TodoItem({ todo, onToggle, onUpdate, onDelete, errors, c
 
   return (
     <div className="item">
-      <input
-        type="checkbox"
-        checked={todo.completed}
-        onChange={() => onToggle(todo.id, todo.completed)}
-      />
-
-      <div>
-        <p style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
-          {todo.title}
-        </p>
-        {todo.note && <p>{todo.note}</p>}
-        {todo.dueDate && <p>Due: {todo.dueDate}</p>}
-        {todo.dueTime && <p>Time: {todo.dueTime}</p>}
-        <p>Priority: {todo.priority}</p>
+      <div className="item-main">
+        <input
+          type="checkbox"
+          checked={todo.completed}
+          onChange={() => onToggle(todo.id, todo.completed)}
+        />
+        <div className={todo.completed ? 'item-content item-content-done' : 'item-content'}>
+          {todo.title && <p>{todo.title}</p>}
+          {todo.note && <p>{todo.note}</p>}
+          {todo.dueDate && <p>Due: {todo.dueDate}</p>}
+          {todo.dueTime && <p>Time: {todo.dueTime}</p>}
+          <p>Priority: {todo.priority}</p>
+        </div>
       </div>
 
       <div className="item-actions">

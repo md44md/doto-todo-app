@@ -32,7 +32,7 @@ export default function DateItem({ date, onToggle, onUpdate, onDelete, errors, c
   
   if (isEditing) {
     return (
-      <div className="item-editing">
+      <div className="item item-editing">
         <div className="form edit-form">
           <div className="form-field">
             <input
@@ -81,20 +81,19 @@ export default function DateItem({ date, onToggle, onUpdate, onDelete, errors, c
 
   return (
     <div className="item">
-      <input
-        type="checkbox"
-        checked={date.completed}
-        onChange={() => onToggle(date.id, date.completed)}
-      />
-
-      <div>
-        <p style={{ textDecoration: date.completed ? 'line-through' : 'none' }}>
-          {date.title}
-        </p>
-        {date.note && <p>{date.note}</p>}
-        {date.date && <p>Date: {date.date}</p>}
-        {date.time && <p>Time: {date.time}</p>}
-        {date.repeat === 'yearly' && <span> 🔁 Repeats yearly</span>}
+      <div className="item-main">
+        <input
+          type="checkbox"
+          checked={date.completed}
+          onChange={() => onToggle(date.id, date.completed)}
+        />
+        <div className={date.completed ? 'item-content item-content-done' : 'item-content'}>
+          {date.title && <p>{date.title}</p>}
+          {date.note && <p>{date.note}</p>}
+          {date.date && <p>Date: {date.date}</p>}
+          {date.time && <p>Time: {date.time}</p>}
+          {date.repeat === 'yearly' && <span> 🔁 Repeats yearly</span>}
+        </div>
       </div>
 
       <div className="item-actions">
