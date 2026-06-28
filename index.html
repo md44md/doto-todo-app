@@ -9,5 +9,15 @@
 </head>
 <body>
   <div id="root"></div>
+  <script>
+    window.onerror = function (msg, url, line, col, error) {
+      document.body.innerHTML =
+        '<pre style="white-space: pre-wrap; padding: 1rem; font-size: 0.8rem;">' +
+        'ERROR: ' + msg + '\n' +
+        'Line: ' + line + ', Col: ' + col + '\n' +
+        (error && error.stack ? error.stack : '') +
+        '</pre>';
+    };
+  </script>
 </body>
 </html> 
