@@ -201,6 +201,14 @@ body {
   font-size: 0.8rem;
 }
 
+/* Fix for mobile overflow */
+.form-input[type="date"],
+.form-input[type="time"] {
+  min-width: 0; /* allows the input to shrink below its native intrinsic width */
+  width: 100%;
+  box-sizing: border-box;
+}
+
 /* Buttons */
 .form-actions, .item-actions {
   display: flex;
