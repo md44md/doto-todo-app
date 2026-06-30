@@ -15,7 +15,7 @@ import { validateTitle } from '../validators/validator'
 import { requestNotificationPermission } from '../lib/notifications'
 
 // sort by due date first, then by priority
-const PRIORITY_ORDER = { high: 1, normal: 2, low: 3 }
+const PRIORITY_ORDER = { high: 1, medium: 2, low: 3, normal: 4 }
 
 function sortTodos(todos) {
   return [...todos].sort((a, b) => {

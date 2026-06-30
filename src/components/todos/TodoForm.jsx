@@ -41,8 +41,9 @@ export default function TodoForm({ onAdd, errors, onSuccess, onCancel }) {
 
             <div className="form-field">
                 <select className="form-select" value={priority} onChange={(e) => setPriority(e.target.value)}>
-                    <option value="high">High</option>
                     <option value="normal">Normal</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
                     <option value="low">Low</option>
                 </select>
             </div>
