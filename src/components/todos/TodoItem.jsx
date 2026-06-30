@@ -54,8 +54,9 @@ export default function TodoItem({ todo, onToggle, onUpdate, onDelete, errors, c
 
           <div className="form-field">
             <select className="form-select" value={editPriority} onChange={(e) => setEditPriority(e.target.value)}>
-              <option value="high">High</option>
               <option value="normal">Normal</option>
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
               <option value="low">Low</option>
             </select>
           </div> 
@@ -104,13 +105,19 @@ export default function TodoItem({ todo, onToggle, onUpdate, onDelete, errors, c
     )
   }
 
+  const priorityClassMap = {
+    low: 'priority-low',
+    medium: 'priority-medium',
+    high: 'priority-high',
+  };
+
   return (
-    <div className="item">
+    <div className={`item ${priorityClassMap[todo.priority]}`}>
       <div className="item-main">
         <input
           type="checkbox"
           checked={todo.completed}
-          onChange={() => onToggle(todo.id, todo.completed)}
+          onChange={() => onToggle(todo.id, todo.completed)}   
         />
         <div className={todo.completed ? 'item-content item-content-done' : 'item-content'}>
           {todo.title && <p>{todo.title}</p>}
