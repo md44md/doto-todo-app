@@ -92,6 +92,9 @@ export default function HomePage() {
           </div>
         )}
       </main>
+      <footer className="app-footer">
+        <p>version 1.2.1</p>
+      </footer>
     </div>
   )
 }
