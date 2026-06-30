@@ -68,7 +68,7 @@ export default function TodoForm({ onAdd, errors, onSuccess, onCancel }) {
                     className="form-input"
                     type="time"
                     value={dueTime}
-                    onChange={(e) => setDueDate(e.target.value)}
+                    onChange={(e) => setDueTime(e.target.value)}
                 />
                 {dueTime && (
                     <button 
