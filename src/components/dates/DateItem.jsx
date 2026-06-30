@@ -59,12 +59,31 @@ export default function DateItem({ date, onToggle, onUpdate, onDelete, errors, c
               value={editDate}
               onChange={(e) => setEditDate(e.target.value)}
             />
+            {editDate && (
+              <button 
+                type="button"
+                className="btn-clear"
+                onClick={() => setEditDate('')}
+                aria-label='Clear date'>
+                x
+              </button>
+            )}      
+
             <input
               className="form-input"
               type="time"
               value={editTime}
               onChange={(e) => setEditTime(e.target.value)}
             />
+            {editTime && (
+              <button 
+                type="button"
+                className="btn-clear"
+                onClick={() => setEditTime('')}
+                aria-label='Clear time'>
+                x
+              </button>
+            )}
           </div>
 
           <div className="form-field">

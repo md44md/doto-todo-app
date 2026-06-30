@@ -47,12 +47,31 @@ export default function DateForm({ onAdd, errors, onSuccess, onCancel }) {
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                 />
+                {date && (
+                    <button 
+                        type="button"
+                        className="btn-clear"
+                        onClick={() => setDate('')}
+                        aria-label='Clear date'>
+                        x
+                    </button>
+                )}
+                
                 <input
                     className="form-input"
                     type="time"
                     value={time}
                     onChange={(e) => setTime(e.target.value)}
                 />
+                {date && (
+                    <button 
+                        type="button"
+                        className="btn-clear"
+                        onClick={() => setTime('')}
+                        aria-label='Clear time'>
+                        x
+                    </button>
+                )}
             </div>
 
             <div className="form-field">

@@ -54,12 +54,31 @@ export default function TodoForm({ onAdd, errors, onSuccess, onCancel }) {
                     value={dueDate}
                     onChange={(e) => setDueDate(e.target.value)}
                 />
+                {dueDate && (
+                    <button 
+                        type="button"
+                        className="btn-clear"
+                        onClick={() => setDueDate('')}
+                        aria-label='Clear due date'>
+                        x
+                    </button>
+                )}
+                
                 <input
                     className="form-input"
                     type="time"
                     value={dueTime}
-                    onChange={(e) => setDueTime(e.target.value)}
+                    onChange={(e) => setDueDate(e.target.value)}
                 />
+                {dueTime && (
+                    <button 
+                        type="button"
+                        className="btn-clear"
+                        onClick={() => setDueTime('')}
+                        aria-label='Clear due time'>
+                        x
+                    </button>
+                )}
             </div>
 
             {errors.title && <p className="form-error">{errors.title}</p>}
