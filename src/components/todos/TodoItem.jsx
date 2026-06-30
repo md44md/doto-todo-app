@@ -67,12 +67,31 @@ export default function TodoItem({ todo, onToggle, onUpdate, onDelete, errors, c
               value={editDueDate}
               onChange={(e) => setEditDueDate(e.target.value)}
             />
+            {editDueDate && (
+              <button 
+                type="button"
+                className="btn-clear"
+                onClick={() => setEditDueDate('')}
+                aria-label='Clear due date'>
+                x
+              </button>
+            )}
+            
             <input
               className="form-input"
               type="time"
               value={editDueTime}
               onChange={(e) => setEditDueTime(e.target.value)}
             />
+            {editDueTime && (
+              <button 
+                type="button"
+                className="btn-clear"
+                onClick={() => setEditDueTime('')}
+                aria-label='Clear due time'>
+                x
+              </button>
+            )}            
           </div>
 
           {errors.title && <p className="form-error">{errors.title}</p>}

@@ -6,9 +6,10 @@ export default function DateItem({ date, onToggle, onUpdate, onDelete, errors, c
   const [editNote, setEditNote] = useState(date.note || '')
   const [editDate, setEditDate] = useState(date.date)
   const [editTime, setEditTime] = useState(date.time || '')
+  const [editRepeat, setEditRepeat] = useState(date.repeat)
 
   async function handleSave() {
-    const success = await onUpdate(date.id, { title: editTitle, note: editNote, date: editDate, time: editTime })
+    const success = await onUpdate(date.id, { title: editTitle, note: editNote, date: editDate, time: editTime, repeat: editRepeat })
     if (success){
       setIsEditing(false)
     }
@@ -25,6 +26,7 @@ export default function DateItem({ date, onToggle, onUpdate, onDelete, errors, c
     setEditNote(date.note)
     setEditDate(date.date)
     setEditTime(date.time)
+    setRepeat(date.repeat)
 
     setIsEditing(false)
     clearErrors()
@@ -57,12 +59,38 @@ export default function DateItem({ date, onToggle, onUpdate, onDelete, errors, c
               value={editDate}
               onChange={(e) => setEditDate(e.target.value)}
             />
+            {editDate && (
+              <button 
+                type="button"
+                className="btn-clear"
+                onClick={() => setEditDate('')}
+                aria-label='Clear date'>
+                x
+              </button>
+            )}      
+
             <input
               className="form-input"
               type="time"
               value={editTime}
               onChange={(e) => setEditTime(e.target.value)}
             />
+            {editTime && (
+              <button 
+                type="button"
+                className="btn-clear"
+                onClick={() => setEditTime('')}
+                aria-label='Clear time'>
+                x
+              </button>
+            )}
+          </div>
+
+          <div className="form-field">
+              <select className="form-select" value={editRepeat} onChange={(e) => setEditRepeat(e.target.value)}>
+                  <option value="none">Does not repeat</option>
+                  <option value="yearly">Repeats yearly</option>
+              </select>
           </div>
 
           {errors.title && <p className="form-error">{errors.title}</p>}
