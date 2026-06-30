@@ -1,6 +1,7 @@
 # Doto Todo App
+**Current version:** 1.3.0
 
-A todo list and important-dates tracker built with React and Firebase. Built as a personal project to learn React fundamentals beyond tutorials — state management, custom hooks, component structure, and working with a real backend (Firebase Auth + Firestore).
+A to-do list and important-dates tracker built with React and Firebase. Built as a personal project to learn React fundamentals beyond tutorials — state management, custom hooks, component structure, and working with a real backend (Firebase Auth + Firestore).
 
 **Live demo:** [md44md.github.io/doto-todo-app](https://md44md.github.io/doto-todo-app/)
 
@@ -14,6 +15,7 @@ A todo list and important-dates tracker built with React and Firebase. Built as 
 - **Browser notifications** — get notified when a task or date is due, using the Notifications API
 - **Responsive layout** — two-column layout on desktop, stacks vertically on mobile
 - **Per-user data** — all todos and dates are scoped to the signed-in user via Firestore
+- **Date/time clear buttons** — small (×) buttons next to date and time fields to clear a value, working around the lack of a native clear affordance on mobile date/time pickers
 
 ## Tech Stack
 
@@ -21,6 +23,7 @@ A todo list and important-dates tracker built with React and Firebase. Built as 
 - **Firebase** — Authentication (email/password + Google) and Firestore (database)
 - **Browser Notifications API**
 - Plain CSS (no framework), organized with CSS variables and a shared `global.css`
+- **GitHub Pages** (`gh-pages` package) for deployment
 
 ## Usage
 
@@ -91,9 +94,10 @@ src/
 - Debugging real layout issues (flexbox stretch behavior, `#root` sizing) by inspecting computed styles rather than guessing
 - Building a notification system with a self-resetting schema (date-string tracking fields) instead of writing explicit reset logic
 - Debugging a real cross-device bug (a white-screen crash on iPhone) by reading an actual stack trace instead of guessing, and discovering it was caused by a platform limitation (`Notification` API not existing in iOS Safari) rather than a logic bug — fixed with a feature-detection guard (`"Notification" in window`)
+- Why overlapping a custom button inside a native `<input type="date">` is fragile across browsers (the internal layout is OS-rendered, not CSS you control) — solved by placing a clear button in the same flex row instead, which is more robust even though it costs a bit of horizontal space
 
 ## Future Improvements
 
-- Full PWA setup (manifest + service worker) so iOS notifications work without manual Home Screen setup
-- In-app notification banner alongside browser push notifications
+- Explored Firebase Cloud Messaging and Periodic Background Sync for true background notifications — concluded this isn't achievable for free: FCM's actual push delivery requires a server-side trigger (Cloud Functions, which need the paid Blaze plan), and iOS Safari doesn't support Background Sync or silent push at all regardless of plan. Revisit if upgrading to Blaze.
+- In-app notification banner
 - Further visual polish and possibly a dark mode
