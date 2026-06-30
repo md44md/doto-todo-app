@@ -63,7 +63,7 @@ export default function DateForm({ onAdd, errors, onSuccess, onCancel }) {
                     value={time}
                     onChange={(e) => setTime(e.target.value)}
                 />
-                {date && (
+                {time && (
                     <button 
                         type="button"
                         className="btn-clear"

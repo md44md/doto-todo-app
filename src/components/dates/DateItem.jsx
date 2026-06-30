@@ -26,7 +26,7 @@ export default function DateItem({ date, onToggle, onUpdate, onDelete, errors, c
     setEditNote(date.note)
     setEditDate(date.date)
     setEditTime(date.time)
-    setRepeat(date.repeat)
+    setEditRepeat(date.repeat)
 
     setIsEditing(false)
     clearErrors()
