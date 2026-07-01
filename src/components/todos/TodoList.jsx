@@ -41,7 +41,7 @@ export default function TodoList({ todos, loading, errors, onToggle, onUpdate, o
       ))}
 
       {overdue.length > 0 && (
-        <div>
+        <div className="section-col">
           <p className="danger">Overdue ({overdue.length})</p>
           {overdue.map(todo => (
             <TodoItem
@@ -59,7 +59,7 @@ export default function TodoList({ todos, loading, errors, onToggle, onUpdate, o
 
 
       {completedTodos.length > 0 && (
-        <div>
+        <div className="section-col">
           <p>Completed ({completedTodos.length})</p>
           {completedTodos.map(todo => (
             <TodoItem

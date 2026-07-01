@@ -41,7 +41,7 @@ export default function DateList({ dates, loading, errors, onAdd, onToggle, onUp
       ))}
 
       {pastDates.length > 0 && (
-        <div>
+        <div className="section-col">
           <p className="danger">Past({pastDates.length})</p>
           {pastDates.map(date => (
             <DateItem
@@ -59,7 +59,7 @@ export default function DateList({ dates, loading, errors, onAdd, onToggle, onUp
       
 
       {completedDates.length > 0 && (
-        <div>
+        <div className="section-col">
           <p>Completed ({completedDates.length})</p>
           {completedDates.map(date => (
             <DateItem
