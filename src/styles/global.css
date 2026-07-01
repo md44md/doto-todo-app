@@ -307,6 +307,10 @@ footer{
   cursor: pointer;
 }
 
+.item-content {
+  white-space: pre-wrap; /* allows text to wrap in item content */
+}
+
 .item-content-done{
   text-decoration: line-through;
   color: var(--text-muted);
