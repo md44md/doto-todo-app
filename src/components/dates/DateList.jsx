@@ -1,7 +1,23 @@
 import DateItem from './DateItem'
 
 export default function DateList({ dates, loading, errors, onAdd, onToggle, onUpdate, onDelete, clearErrors }) {
-  const activeDates = dates.filter(date => !date.completed)
+
+  const isPast = (date) => {
+    if (!date.date) return false
+
+    const now = new Date()
+
+    if (date.time) {
+      const due = new Date(`${date.date}T${date.time}`)
+      return due < now
+    }
+
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    return new Date(date.date) < today
+  }
+  const activeDates = dates.filter(date => !date.completed && !isPast(date))
+  const pastDates = dates.filter(date => !date.completed && isPast(date) && date.repeat === 'none')
   const completedDates = dates.filter(date => date.completed)
 
   if (loading) return <p>Loading...</p>
@@ -23,6 +39,24 @@ export default function DateList({ dates, loading, errors, onAdd, onToggle, onUp
           clearErrors={clearErrors}
         />
       ))}
+
+      {pastDates.length > 0 && (
+        <div>
+          <p className="danger">Past({pastDates.length})</p>
+          {pastDates.map(date => (
+            <DateItem
+              key={date.id}
+              date={date}
+              onToggle={onToggle}
+              onUpdate={onUpdate}
+              onDelete={onDelete}
+              errors={errors}
+              clearErrors={clearErrors}
+            />
+          ))}
+        </div>
+      )}
+      
 
       {completedDates.length > 0 && (
         <div>

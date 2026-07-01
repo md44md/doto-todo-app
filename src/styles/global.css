@@ -89,6 +89,11 @@ footer{
   gap: 0.75rem;
 }
 
+.danger {
+  color: red;
+  font-weight: 500;
+}
+
 /* Add button */
 .add-button {
   position: fixed;
