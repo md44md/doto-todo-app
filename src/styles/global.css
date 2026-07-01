@@ -89,6 +89,17 @@ footer{
   gap: 0.75rem;
 }
 
+.section-col { /* Override gap for Overdue and Completed sections */
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.danger {
+  color: red;
+  font-weight: 500;
+}
+
 /* Add button */
 .add-button {
   position: fixed;
@@ -300,6 +311,10 @@ footer{
   margin-top: 3px; /* nudges checkbox to align with first line of text */
   accent-color: var(--accent-color);
   cursor: pointer;
+}
+
+.item-content {
+  white-space: pre-wrap; /* allows text to wrap in item content */
 }
 
 .item-content-done{
