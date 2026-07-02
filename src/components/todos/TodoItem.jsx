@@ -124,7 +124,7 @@ export default function TodoItem({ todo, onToggle, onUpdate, onDelete, errors, c
           {todo.note && <p>{todo.note}</p>}
           {todo.dueDate && <p>Due: {todo.dueDate}</p>}
           {todo.dueTime && <p>Time: {todo.dueTime}</p>}
-          <p>Priority: {todo.priority}</p>
+          {todo.priority != "normal" && <p>Priority: {todo.priority}</p>}
         </div>
       </div>
 
