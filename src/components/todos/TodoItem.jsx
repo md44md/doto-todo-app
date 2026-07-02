@@ -122,9 +122,9 @@ export default function TodoItem({ todo, onToggle, onUpdate, onDelete, errors, c
         <div className={todo.completed ? 'item-content item-content-done' : 'item-content'}>
           {todo.title && <p>{todo.title}</p>}
           {todo.note && <p>{todo.note}</p>}
-          {todo.dueDate && <p>Due: {todo.dueDate}</p>}
-          {todo.dueTime && <p>Time: {todo.dueTime}</p>}
-          <p>Priority: {todo.priority}</p>
+          {todo.dueDate && <p>Due: {new Date(todo.dueDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</p>}
+          {todo.dueTime && <p>Time: {new Date(`${todo.dueDate}T${todo.dueTime}`).toLocaleTimeString('en-GB', { hour12: true, hour: '2-digit', minute: '2-digit' })}</p>}
+          {todo.priority != "normal" && <p>Priority: {todo.priority}</p>}
         </div>
       </div>
 

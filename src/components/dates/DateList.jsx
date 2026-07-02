@@ -18,7 +18,6 @@ export default function DateList({ dates, loading, errors, onAdd, onToggle, onUp
   }
   const activeDates = dates.filter(date => !date.completed && !isPast(date))
   const pastDates = dates.filter(date => !date.completed && isPast(date) && date.repeat === 'none')
-  const completedDates = dates.filter(date => date.completed)
 
   if (loading) return <p>Loading...</p>
 
@@ -44,24 +43,6 @@ export default function DateList({ dates, loading, errors, onAdd, onToggle, onUp
         <div className="section-col">
           <p className="danger">Past({pastDates.length})</p>
           {pastDates.map(date => (
-            <DateItem
-              key={date.id}
-              date={date}
-              onToggle={onToggle}
-              onUpdate={onUpdate}
-              onDelete={onDelete}
-              errors={errors}
-              clearErrors={clearErrors}
-            />
-          ))}
-        </div>
-      )}
-      
-
-      {completedDates.length > 0 && (
-        <div className="section-col">
-          <p>Completed ({completedDates.length})</p>
-          {completedDates.map(date => (
             <DateItem
               key={date.id}
               date={date}
