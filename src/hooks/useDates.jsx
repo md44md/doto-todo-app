@@ -96,12 +96,6 @@ export function useDates(uid) {
         return true
     }    
     
-    // Toggle completed on/off
-    async function toggleDate(dateId, currentValue) {
-        await updateDoc(doc(db, 'users', uid, 'dates', dateId), {
-            completed: !currentValue,
-        })
-    }
         
     // Delete a date
     async function deleteDate(dateId) {
@@ -129,5 +123,5 @@ export function useDates(uid) {
     function clearErrors() {
         setErrors({})
 
-    }    return { dates, loading, errors, addDate, toggleDate, deleteDate, updateDate, clearErrors }
+    }    return { dates, loading, errors, addDate, deleteDate, updateDate, clearErrors }
 }

@@ -107,11 +107,6 @@ export default function DateItem({ date, onToggle, onUpdate, onDelete, errors, c
   return (
     <div className="item">
       <div className="item-main">
-        <input
-          type="checkbox"
-          checked={date.completed}
-          onChange={() => onToggle(date.id, date.completed)}
-        />
         <div className={date.completed ? 'item-content item-content-done' : 'item-content'}>
           {date.title && <p>{date.title}</p>}
           {date.note && <p>{date.note}</p>}
