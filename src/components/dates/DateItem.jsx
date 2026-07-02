@@ -110,8 +110,8 @@ export default function DateItem({ date, onToggle, onUpdate, onDelete, errors, c
         <div className='item-content'>
           {date.title && <p>{date.title}</p>}
           {date.note && <p>{date.note}</p>}
-          {date.date && <p>Date: {date.date}</p>}
-          {date.time && <p>Time: {date.time}</p>}
+          {date.date && <p>Date: {new Date(date.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</p>}
+          {date.time && <p>Time: {new Date(`${date.date}T${date.time}`).toLocaleTimeString('en-GB', { hour12: true, hour: '2-digit', minute: '2-digit' })}</p>}
           {date.repeat === 'yearly' && <span> 🔁 Repeats yearly</span>}
         </div>
       </div>
