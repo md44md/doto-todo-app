@@ -107,7 +107,7 @@ export default function DateItem({ date, onToggle, onUpdate, onDelete, errors, c
   return (
     <div className="item">
       <div className="item-main">
-        <div className={date.completed ? 'item-content item-content-done' : 'item-content'}>
+        <div className='item-content'>
           {date.title && <p>{date.title}</p>}
           {date.note && <p>{date.note}</p>}
           {date.date && <p>Date: {date.date}</p>}
